@@ -9,22 +9,19 @@ EnableExplicit
 
 ; - Macros
 Macro GetLineFile()
-    Str(#PB_Compiler_Line) + #PB_Compiler_Procedure
+    Str(#PB_Compiler_Line) + "," + #PB_Compiler_Procedure
 EndMacro
 
-;{
-Global OmniSettings.CoreSettings
 
-Procedure LoadCoreSettings()
-    
-EndProcedure
-;}
 
 OpenConsole("Omniserve")
 EnableGraphicalConsole(#True)
 
 XIncludeFile "Includes/Structures.pbi"
 XIncludeFile "Headers.pbi"
+
+Global OmniSettings.CoreSettings
+
 ; - Core System Files
 
 XIncludeFile "Core/TaskScheduler.pbi"
@@ -32,7 +29,17 @@ XIncludeFile "Core/Settings.pbi"
 XIncludeFile "Core/Logger.pbi"
 XIncludeFile "Core/Plugins.pbi"
 
+;{
 
+
+Procedure LoadCoreSettings()
+    If LCase(AllSettings()\Entries("Logging")) = "true"
+        OmniSettings\Logging = #True
+    ElseIf LCase(AllSettings()\Entries("Logging")) = "false"
+        OmniSettings\Logging = #False
+    EndIf
+EndProcedure
+;}
 
 _Log("info", "Starting Omniserve...", GetLineFile())
 RunInitTasks()
@@ -51,7 +58,7 @@ _Log("info", "Complete.", GetLineFile())
 Input()
 CloseConsole()
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 18
+; CursorPosition = 11
 ; Folding = -
 ; EnableThread
 ; EnableXP

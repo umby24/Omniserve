@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://www.purebasic.com/namespace" version="1.0" creator="PureBasic 5.00 (Windows - x64)">
+<project xmlns="http://www.purebasic.com/namespace" version="1.0" creator="PureBasic 5.30 (Windows - x64)">
   <section name="config">
     <options closefiles="1" openmode="0" name="Omniserve"/>
     <comment>
@@ -12,33 +12,46 @@
   <section name="data">
     <explorer view="" pattern="0"/>
     <log show="1"/>
-    <lastopen date="2015-03-04 14:09" user="Wandering" host="UNKNOWN-LAPTOP"/>
+    <lastopen date="2015-03-14 03:07" user="Tommy" host="UNKNOWN"/>
   </section>
   <section name="files">
     <file name="Core\Logger.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
-      <fingerprint md5="ba217129e88c790b53d80e4343541da7"/>
+      <fingerprint md5="7fce6df284aaa4069e7f8dc253d22f87"/>
     </file>
     <file name="Core\Plugins.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
-      <fingerprint md5="c069fe718243d80e723c2836ba4453d2"/>
+      <fingerprint md5="4526e59d80f5026178b623a2ff5205d3"/>
     </file>
     <file name="Core\TaskScheduler.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
       <fingerprint md5="ce1c76de9c0f2292d6c296a03e80dc67"/>
     </file>
     <file name="Includes\Structures.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
-      <fingerprint md5="ec686dadf537845286aac8b0c04da608"/>
+      <fingerprint md5="ce48c1e3f32a5f54f49b88c9d7530e8a"/>
     </file>
     <file name="Main.pb">
       <config load="0" scan="1" panel="1" warn="0" lastopen="1" panelstate="+"/>
+    </file>
+    <file name="Core\Settings.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <fingerprint md5="f195f90e4a213af3e45663b717cd0c83"/>
+    </file>
+    <file name="API\PluginFunctions.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <fingerprint md5="028a58ec93d9a72620eaf78d6b8345aa"/>
+    </file>
+    <file name="API\Include.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <fingerprint md5="ae5a1fdfed55995a93a2c2384d9d131d"/>
     </file>
   </section>
   <section name="targets">
     <target name="Default Target" enabled="1" default="1">
       <inputfile value="Main.pb"/>
       <outputfile value="Omniserve.exe"/>
+      <compiler version="PureBasic 5.30 (Windows - x86)"/>
       <options thread="1" xpskin="1" debug="1"/>
     </target>
   </section>

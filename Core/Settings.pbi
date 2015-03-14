@@ -116,7 +116,7 @@ SettingsMutex = CreateMutex()
 AddTask("Settings", #Null, @SettingsMain(), #Null, 2000)
 ; IDE Options = PureBasic 5.30 (Windows - x64)
 ; CursorPosition = 44
-; FirstLine = 6
+; FirstLine = 3
 ; Folding = D+
 ; EnableThread
 ; EnableXP

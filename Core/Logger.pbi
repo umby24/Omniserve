@@ -23,14 +23,16 @@ Procedure LogInit()
         Incriment = Incriment + 1
     Wend
     
-   ; If SystemSettings\Logging = #True
-        LogMain\FileId = OpenFile(#PB_Any, "Log\" + LogMain\Filename)
-        
-        If LogMain\FileId = 0
-            _Log("warning", "Couldn't open log file, continuing without logging.", GetLineFile())
-            ;SystemSettings\Logging = #False
-        EndIf
-  ;  EndIf
+    If OmniSettings\Logging = #False
+        ProcedureReturn
+    EndIf
+    
+    LogMain\FileId = OpenFile(#PB_Any, "Log\" + LogMain\Filename)
+    
+    If LogMain\FileId = 0
+        _Log("warning", "Couldn't open log file, continuing without logging.", GetLineFile())
+        OmniSettings\Logging = #False
+    EndIf
     
 EndProcedure
         
@@ -57,15 +59,15 @@ Procedure _Log(Type.s, Message.s, LineFile.s)
             ConsoleColor(15, 0)
         Case "warning"
             ConsoleColor(12, 0)
-            Print("[Warning]  (" + LineFile + ") ")
+            Print("[Warning] (" + LineFile + ") ")
             ConsoleColor(15, 0)
         Case "error"
             ConsoleColor(4, 0)
-            Print("[ERROR]  (" + LineFile + ") ")
+            Print("[ERROR] (" + LineFile + ") ")
             ConsoleColor(15, 0)
         Case "critical"
             ConsoleColor(4, 0)
-            Print("[CRITICAL](" + LineFile + ") ")
+            Print("[CRITICAL] (" + LineFile + ") ")
             ConsoleColor(15, 0)
         Case "chat"
             ConsoleColor(10, 0)
@@ -82,24 +84,30 @@ Procedure _Log(Type.s, Message.s, LineFile.s)
     PrintN(Message)
     ConsoleColor(15, 0)
     
-  ;  If SystemSettings\Logging = #True
-        If IsFile(LogMain\FileID)
-            Result = WriteStringN(LogMain\FileID, "[" + UCase(Type) + "] " + LineFile + "| " + Message)
-            
-            If Result = #False
-               ; SystemSettings\Logging = #False
-                CloseFile(LogMain\FileID)
-                _Log("warning", "Error writing to log file, turning off logging.", GetLineFile())
-            EndIf
-        EndIf
-   ; EndIf
+    If OmniSettings\Logging = #False
+        ProcedureReturn
+    EndIf
+    
+    If Not IsFile(LogMain\FileID)
+        ProcedureReturn
+    EndIf
+    
+    Result = WriteStringN(LogMain\FileID, "[" + UCase(Type) + "] " + LineFile + "| " + Message)
+    
+    If Result = #True
+        ProcedureReturn
+    EndIf
+    
+    OmniSettings\Logging = #False
+    CloseFile(LogMain\FileID)
+    _Log("warning", "Error writing to log file, turning off logging.", GetLineFile())
     
 EndProcedure
 
 AddTask("Log", @LogInit(), #Null, @LogShutdown(), 1000)
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 98
-; FirstLine = 56
+; CursorPosition = 99
+; FirstLine = 47
 ; Folding = -
 ; EnableThread
 ; EnableXP
