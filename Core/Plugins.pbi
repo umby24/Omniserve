@@ -10,6 +10,9 @@ Structure PluginFunction ; - Callable server functions
     *SaveSetting
     *AddTask
     *DeleteTask
+    *CreateClient
+    *CloseClient
+    *ReadClientData
 EndStructure
 
 CompilerIf #PB_Compiler_OS = #PB_OS_Windows
@@ -30,6 +33,9 @@ Procedure AssignPlugPointer()
     PlugPointer\DeleteTask = @DeleteTask()
     PlugPointer\ReadSetting = @ReadSetting()
     PlugPointer\SaveSetting = @SaveSetting()
+    PlugPointer\ReadClientData = @ReadClientData()
+    PlugPointer\CreateClient = @CreateClient()
+    PlugPointer\CloseClient = @CloseClient()
 EndProcedure
 
 Procedure CheckPlugins()
@@ -154,8 +160,8 @@ EndProcedure
 
 AddTask("Plugin Check", @AssignPlugPointer(), @PluginsMain(), #Null, 1000) ; - Register with the task scheduler to check for new plugins every second.
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 12
-; FirstLine = 1
+; CursorPosition = 29
+; FirstLine = 2
 ; Folding = -
 ; EnableThread
 ; EnableXP

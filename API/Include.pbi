@@ -10,6 +10,9 @@ Structure PluginFunction ; - Callable server functions
     *SaveSetting
     *AddTask
     *DeleteTask
+    *CreateClient
+    *CloseClient
+    *ReadClientData
 EndStructure
 ;}
 
@@ -20,6 +23,10 @@ Prototype.s ReadSetting(Filename.s, key.s)
 Prototype SaveSetting(Filename.s, key.s, value.s)
 Prototype AddTask(Name.s, *InitFunction, *MainFunction, *ShutdownFunction, Interval.l)
 Prototype DeleteTask(Name.s)
+; - Client Network
+Prototype CreateClient(IP.s, Port.w)
+Prototype CloseClient(*MyClient.NetworkClient)
+Prototype ReadClientData(*MyClient.NetworkClient, Size.l)
 ;}
 
 Macro GetLineFile()
@@ -33,9 +40,14 @@ Procedure DefinePrototypes(*Pointer.PluginFunction) ; Assigns function pointers 
     Global SaveSetting.SaveSetting = *Pointer\SaveSetting
     Global AddTask.AddTask = *Pointer\AddTask
     Global DeleteTask.DeleteTask = *Pointer\DeleteTask
+    
+    ; - Client Network
+    Global CreateClient.CreateClient = *Pointer\CreateClient
+    Global CloseClient.CloseClient = *Pointer\CloseClient
+    Global ReadClientData.ReadClientData = *Pointer\ReadClientData
 EndProcedure
 
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 27
-; Folding = 0
+; CursorPosition = 46
+; Folding = -
 ; EnableXP

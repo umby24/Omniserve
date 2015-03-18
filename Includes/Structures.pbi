@@ -37,10 +37,26 @@ EndStructure
 
 Structure CoreSettings
     Logging.a
+    Running.a
+EndStructure
+
+Structure NetworkClient
+    ID.i
+    *SendBuffer
+    *ReceiveBuffer
+    SendOffset.i
+    ReceiveOffset.i
+    Connected.a
+EndStructure
+
+Structure NetworkServer
+    *SendBuffer
+    SendOffset.i
+    ReceiveOffset.i
 EndStructure
 
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 40
-; Folding = --
+; CursorPosition = 39
+; FirstLine = 7
 ; EnableThread
 ; EnableXP

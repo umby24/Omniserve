@@ -16,8 +16,9 @@ EndProcedure
 
 ; IDE Options = PureBasic 5.30 (Windows - x64)
 ; ExecutableFormat = Shared Dll
+; CursorPosition = 10
 ; Folding = -
 ; EnableThread
 ; EnableXP
 ; Executable = ..\Plugins\Example.dll
-; Compiler = PureBasic 5.30 (Windows - x86)
+; Compiler = PureBasic 5.30 (Windows - x64)

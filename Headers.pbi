@@ -28,6 +28,8 @@ Declare LogShutdown()
 
 Declare _Log(Type.s, Message.s, LineFile.s)
 
+Declare AssignPlugPointer()
+
 Declare CheckPlugins()
 
 Declare LoadPlugin(File.s)

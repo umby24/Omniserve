@@ -27,6 +27,7 @@ Global OmniSettings.CoreSettings
 XIncludeFile "Core/TaskScheduler.pbi"
 XIncludeFile "Core/Settings.pbi"
 XIncludeFile "Core/Logger.pbi"
+XIncludeFile "Network/ClientNetwork.pbi"
 XIncludeFile "Core/Plugins.pbi"
 
 ;{
@@ -42,15 +43,17 @@ EndProcedure
 ;}
 
 _Log("info", "Starting Omniserve...", GetLineFile())
+OmniSettings\Running = #True
+
 RunInitTasks()
 _Log("info", "Started", GetLineFile())
 
-Define i.l
-
-For i = 0 To 100
+While OmniSettings\Running
     RunMainTasks()
     Delay(10)
-Next
+Wend
+
+OmniSettings\Running = #False
 
 _Log("info", "Shutting Down...", GetLineFile())
 RunShutdownTasks()
@@ -58,7 +61,8 @@ _Log("info", "Complete.", GetLineFile())
 Input()
 CloseConsole()
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 11
-; Folding = -
+; CursorPosition = 49
+; FirstLine = 2
+; Folding = 0
 ; EnableThread
 ; EnableXP
