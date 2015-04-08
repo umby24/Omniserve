@@ -16,9 +16,17 @@ Structure PluginFunction ; - Callable server functions
 EndStructure
 
 CompilerIf #PB_Compiler_OS = #PB_OS_Windows
-    #Extension = ".dll"
-CompilerElseIf #PB_Compiler_OS = #PB_OS_Linux
-    #Extension = ".a"
+    CompilerIf #PB_Compiler_Processor = #PB_Processor_x86
+        #Extension = ".x86.dll"
+    CompilerElse
+        #Extension = ".x64.dll"
+    CompilerEndIf
+CompilerElse
+    CompilerIf #PB_Compiler_Processor = #PB_Processor_x86
+        #Extension = ".x86.a"
+    CompilerElse
+        #Extension = ".x64.a"
+    CompilerEndIf
 CompilerEndIf
 
 Global NewMap PluginDirectory.Plugin()
@@ -127,7 +135,7 @@ Procedure LoadPlugin(File.s)
     EndIf
     ;TODO - Load plugin event methods
     
-    _Log("info", "Plugin Loaded: " + PluginDirectory()\Info\Name + " (By " + PluginDirectory()\Info\Author + ", Version: " + PluginDirectory()\Info\Version + ")", GetLineFile())
+    _Log("info", "Plugin Loaded: " + PluginDirectory()\Info\Name + " (By " + PluginDirectory()\Info\Author + ", Version: " + Str(PluginDirectory()\Info\Version) + ")", GetLineFile())
     
     UnlockMutex(PlugMutex) ; - MUTEX UNLOCK
     ProcedureReturn #True
@@ -160,8 +168,8 @@ EndProcedure
 
 AddTask("Plugin Check", @AssignPlugPointer(), @PluginsMain(), #Null, 1000) ; - Register with the task scheduler to check for new plugins every second.
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 19
-; FirstLine = 3
+; CursorPosition = 137
+; FirstLine = 127
 ; Folding = --
 ; EnableThread
 ; EnableXP
