@@ -14,8 +14,9 @@ EndMacro
 
 
 
-OpenConsole("Omniserve")
-EnableGraphicalConsole(#True)
+OpenConsole()
+ConsoleTitle("Omniserve")
+EnableGraphicalConsole(#False)
 
 XIncludeFile "Includes/Structures.pbi"
 XIncludeFile "Headers.pbi"
@@ -26,13 +27,12 @@ Global OmniSettings.CoreSettings
 
 XIncludeFile "Core/TaskScheduler.pbi"
 XIncludeFile "Core/Settings.pbi"
+XIncludeFile "Core/Console.pbi"
 XIncludeFile "Core/Logger.pbi"
 XIncludeFile "Network/ClientNetwork.pbi"
 XIncludeFile "Core/Plugins.pbi"
 
 ;{
-
-
 Procedure LoadCoreSettings()
     If LCase(AllSettings()\Entries("Logging")) = "true"
         OmniSettings\Logging = #True
@@ -61,8 +61,7 @@ _Log("info", "Complete.", GetLineFile())
 Input()
 CloseConsole()
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 49
-; FirstLine = 2
-; Folding = 0
+; CursorPosition = 18
+; Folding = -
 ; EnableThread
 ; EnableXP

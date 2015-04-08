@@ -81,7 +81,8 @@ Procedure _Log(Type.s, Message.s, LineFile.s)
             ConsoleColor(13, 0)
     EndSelect
     
-    PrintN(Message)
+    Print(Message)
+    PrintN("")
     ConsoleColor(15, 0)
     
     If OmniSettings\Logging = #False
@@ -106,8 +107,8 @@ EndProcedure
 
 AddTask("Log", @LogInit(), #Null, @LogShutdown(), 1000)
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 99
-; FirstLine = 47
+; CursorPosition = 84
+; FirstLine = 58
 ; Folding = -
 ; EnableThread
 ; EnableXP

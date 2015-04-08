@@ -160,8 +160,8 @@ EndProcedure
 
 AddTask("Plugin Check", @AssignPlugPointer(), @PluginsMain(), #Null, 1000) ; - Register with the task scheduler to check for new plugins every second.
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 29
-; FirstLine = 2
-; Folding = -
+; CursorPosition = 19
+; FirstLine = 3
+; Folding = --
 ; EnableThread
 ; EnableXP

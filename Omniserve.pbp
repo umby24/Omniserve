@@ -12,46 +12,50 @@
   <section name="data">
     <explorer view="" pattern="0"/>
     <log show="1"/>
-    <lastopen date="2015-03-17 00:46" user="Tommy" host="UNKNOWN"/>
+    <lastopen date="2015-04-08 13:01" user="Wandering" host="UNKNOWN-LAPTOP"/>
   </section>
   <section name="files">
     <file name="API\Include.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="+-"/>
       <fingerprint md5="fa33de3ae10bcb475b6ec047b448e848"/>
     </file>
+    <file name="Core\Console.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="+-"/>
+      <fingerprint md5="c2b4bda58543656b6b7ce2ba85da840f"/>
+    </file>
     <file name="Core\Logger.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+-"/>
       <fingerprint md5="7fce6df284aaa4069e7f8dc253d22f87"/>
     </file>
     <file name="Core\Plugins.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+-"/>
       <fingerprint md5="926b6bcbc6d2c6fc71db383bc638d445"/>
     </file>
     <file name="Core\Settings.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+-"/>
       <fingerprint md5="f195f90e4a213af3e45663b717cd0c83"/>
     </file>
     <file name="Core\TaskScheduler.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+-"/>
       <fingerprint md5="ce1c76de9c0f2292d6c296a03e80dc67"/>
     </file>
     <file name="Includes\Structures.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
-      <fingerprint md5="998d641a5a098d7b83ed5310a59f06e0"/>
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+-"/>
+      <fingerprint md5="520acbe632dfdbdaf53709158d7e0dcb"/>
     </file>
     <file name="Main.pb">
       <config load="0" scan="1" panel="1" warn="0" lastopen="1" panelstate="+"/>
     </file>
     <file name="Network\ClientNetwork.pbi">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
-      <fingerprint md5="e314b5504f002fbe211b813264e3c00f"/>
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+-"/>
+      <fingerprint md5="48b27cf5876583f48a41c4922d9f7572"/>
     </file>
   </section>
   <section name="targets">
     <target name="5.3, x64" enabled="1" default="1">
       <inputfile value="Main.pb"/>
       <outputfile value="Omniserve.x64.exe"/>
-      <compiler version="PureBasic 5.30 (Windows - x64)"/>
+      <compiler version="PureBasic 5.00 (Linux - x64)"/>
       <executable value="Omniserve.x64.exe"/>
       <options thread="1" xpskin="1" debug="1"/>
       <format exe="console" cpu="0"/>

@@ -22,11 +22,31 @@ Declare SettingsMain()
 
 Declare SettingsShutdown()
 
+Declare split(Array a$(1), s$, delimeter$)
+
+Declare MainConsole(Nothing)
+
+Declare ConsoleInit()
+
+Declare HandleConsole(Input.s)
+
+Declare HandleSwitch(Input.s)
+
+Declare HandleExit(Input.s)
+
 Declare LogInit()
 
 Declare LogShutdown()
 
 Declare _Log(Type.s, Message.s, LineFile.s)
+
+Declare CreateClient(IP.s, Port.w)
+
+Declare CloseClient(*MyClient.NetworkClient)
+
+Declare ReadClientData(*MyClient.NetworkClient, Size.l)
+
+Declare ClientEvents()
 
 Declare AssignPlugPointer()
 

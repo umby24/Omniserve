@@ -9,7 +9,7 @@ Global NewMap NetClients.NetworkClient()
 Global NetClientLock = CreateMutex()
 
 Procedure CreateClient(IP.s, Port.w)
-    Define myClient = OpenNetworkConnection(IP, Port, #PB_Network_TCP, 5000)
+    Define myClient = OpenNetworkConnection(IP, Port, #PB_Network_TCP)
     
     If myClient = 0
         ProcedureReturn #False
@@ -68,11 +68,11 @@ Procedure ReadClientData(*MyClient.NetworkClient, Size.l)
     Else
         *MyClient\ReceiveBuffer = AllocateMemory(Size)
         *MyClient\ReceiveOffset = 0
-        _log("debug", "Memsize" + MemorySize(*MyClient\ReceiveBuffer), GetLineFile())
+        _log("debug", "Memsize" + Str(MemorySize(*MyClient\ReceiveBuffer)), GetLineFile())
     EndIf
 
     While Result <> Size
-        If NetworkClientEvent(*MyClient\ID) = #PB_NetworkEvent_None
+        If NetworkClientEvent(*MyClient\ID) = 0
             Delay(1)
             Continue
         EndIf
@@ -111,8 +111,8 @@ Procedure ClientEvents()
 EndProcedure
 
 AddTask("NetClientEvents", #Null, @ClientEvents(), #Null, 2000) ; Every 2 seconds, check for disconnects.
-; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 88
-; FirstLine = 33
+; IDE Options = PureBasic 5.00 (Linux - x64)
+; CursorPosition = 74
+; FirstLine = 42
 ; Folding = 0
 ; EnableXP
