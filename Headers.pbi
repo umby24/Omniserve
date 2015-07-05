@@ -22,18 +22,6 @@ Declare SettingsMain()
 
 Declare SettingsShutdown()
 
-Declare split(Array a$(1), s$, delimeter$)
-
-Declare MainConsole(Nothing)
-
-Declare ConsoleInit()
-
-Declare HandleConsole(Input.s)
-
-Declare HandleSwitch(Input.s)
-
-Declare HandleExit(Input.s)
-
 Declare LogInit()
 
 Declare LogShutdown()
@@ -46,6 +34,10 @@ Declare CloseClient(*MyClient.NetworkClient)
 
 Declare ReadClientData(*MyClient.NetworkClient, Size.l)
 
+Declare WriteClientData(*MyClient.NetworkClient, *Data, Size.l)
+
+Declare PurgeClientData(*MyClient.NetworkClient)
+
 Declare ClientEvents()
 
 Declare AssignPlugPointer()
@@ -57,4 +49,24 @@ Declare LoadPlugin(File.s)
 Declare UnloadPlugin(File.s)
 
 Declare PluginsMain()
+
+Declare PluginsShutdown()
+
+Declare split(Array a$(1), s$, delimeter$)
+
+Declare MainConsole(Nothing)
+
+Declare ConsoleInit()
+
+Declare HandleConsole(Input.s)
+
+Declare HandleSwitch(Input.s)
+
+Declare HandleExit(Input.s)
+
+Declare HandlePlugins(Input.s)
+
+Declare HandlePluginUnload(Input.s)
+
+Declare HandlePluginLoad(Input.s)
 

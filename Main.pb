@@ -8,11 +8,9 @@ EnableExplicit
 #VERSION = 0001
 
 ; - Macros
-Macro GetLineFile()
+Macro GetLineFile() ; - Macro for logging.
     Str(#PB_Compiler_Line) + "," + #PB_Compiler_Procedure
 EndMacro
-
-
 
 OpenConsole()
 ConsoleTitle("Omniserve")
@@ -27,11 +25,11 @@ Global OmniSettings.CoreSettings
 
 XIncludeFile "Core/TaskScheduler.pbi"
 XIncludeFile "Core/Settings.pbi"
-XIncludeFile "Core/Console.pbi"
+
 XIncludeFile "Core/Logger.pbi"
 XIncludeFile "Network/ClientNetwork.pbi"
 XIncludeFile "Core/Plugins.pbi"
-
+XIncludeFile "Core/Console.pbi"
 ;{
 Procedure LoadCoreSettings()
     If LCase(AllSettings()\Entries("Logging")) = "true"
@@ -50,18 +48,18 @@ _Log("info", "Started", GetLineFile())
 
 While OmniSettings\Running
     RunMainTasks()
-    Delay(10)
+    Delay(1)
 Wend
 
 OmniSettings\Running = #False
 
 _Log("info", "Shutting Down...", GetLineFile())
-RunShutdownTasks()
 _Log("info", "Complete.", GetLineFile())
+
 Input()
 CloseConsole()
-; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 18
-; Folding = -
+; IDE Options = PureBasic 5.00 (Windows - x64)
+; CursorPosition = 59
+; Folding = 0
 ; EnableThread
 ; EnableXP

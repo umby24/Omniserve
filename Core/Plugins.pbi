@@ -13,6 +13,8 @@ Structure PluginFunction ; - Callable server functions
     *CreateClient
     *CloseClient
     *ReadClientData
+    *WriteClientData
+    *PurgeClientData
 EndStructure
 
 CompilerIf #PB_Compiler_OS = #PB_OS_Windows
@@ -23,9 +25,9 @@ CompilerIf #PB_Compiler_OS = #PB_OS_Windows
     CompilerEndIf
 CompilerElse
     CompilerIf #PB_Compiler_Processor = #PB_Processor_x86
-        #Extension = ".x86.a"
+        #Extension = ".x86.so"
     CompilerElse
-        #Extension = ".x64.a"
+        #Extension = ".x64.so"
     CompilerEndIf
 CompilerEndIf
 
@@ -44,6 +46,8 @@ Procedure AssignPlugPointer()
     PlugPointer\ReadClientData = @ReadClientData()
     PlugPointer\CreateClient = @CreateClient()
     PlugPointer\CloseClient = @CloseClient()
+    PlugPointer\WriteClientData = @WriteClientData()
+    PlugPointer\PurgeClientData = @PurgeClientData()
 EndProcedure
 
 Procedure CheckPlugins()
@@ -101,7 +105,7 @@ Procedure CheckPlugins()
         UnlockMutex(PlugMutex) ; - MUTEX UNLOCK
         IsGood = LoadPlugin(Entry) ; - Find out if it's a valid plugin or not.
         LockMutex(PlugMutex) ; - MUTEX LOCK
-        PluginDirectory()\Valid= IsGood
+        PluginDirectory(Entry)\Valid= IsGood
         PluginDirectory()\Loaded = IsGood
         PluginDirectory()\Path = "Plugins/" + Entry
         
@@ -166,10 +170,18 @@ Procedure PluginsMain()
     CheckPlugins()
 EndProcedure
 
-AddTask("Plugin Check", @AssignPlugPointer(), @PluginsMain(), #Null, 1000) ; - Register with the task scheduler to check for new plugins every second.
+Procedure PluginsShutdown()
+    ForEach PluginDirectory()
+        UnloadPlugin(MapKey(PluginDirectory()))
+    Next
+    
+    _log("info", "Plugins unloaded.", GetLineFile())
+EndProcedure
+
+AddTask("Plugin Check", @AssignPlugPointer(), @PluginsMain(), @PluginsShutdown(), 1000) ; - Register with the task scheduler to check for new plugins every second.
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 137
-; FirstLine = 127
-; Folding = --
+; CursorPosition = 107
+; FirstLine = 82
+; Folding = n-
 ; EnableThread
 ; EnableXP

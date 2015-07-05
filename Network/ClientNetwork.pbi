@@ -21,7 +21,7 @@ Procedure CreateClient(IP.s, Port.w)
     
     NetClients()\ID = myClient
     NetClients()\ReceiveOffset = 0
-    NetClients()\SendOffset = 0
+    NetClients()\BufferSize = 0
     NetClients()\Connected = #True
     
     Define Pointer = @NetClients(Str(myClient))
@@ -46,8 +46,8 @@ Procedure CloseClient(*MyClient.NetworkClient)
         FreeMemory(*MyClient\SendBuffer)
     EndIf
     
+    *MyClient\BufferSize = 0
     *MyClient\ReceiveOffset = 0
-    *MyClient\SendOffset = 0
     
     ProcedureReturn #True
 EndProcedure
@@ -57,18 +57,19 @@ Procedure ReadClientData(*MyClient.NetworkClient, Size.l)
     Result = 0
     
     If *MyClient\ReceiveBuffer <> 0
-        *TempMem = AllocateMemory(MemorySize(*MyClient\ReceiveBuffer)) ; - Copy any existing data in the receive buffer..
-        CopyMemory(*MyClient\ReceiveBuffer, *TempMem, MemorySize(*TempMem))
-        *MyClient\ReceiveBuffer = ReAllocateMemory(*MyClient\ReceiveBuffer, MemorySize(*TempMem) + Size) ; - Possible size mismatch could cause a crash in here..
+        Define oldSize.i = MemorySize(*MyClient\ReceiveBuffer)
+        *TempMem = AllocateMemory(oldSize) ; - Copy any existing data in the receive buffer..
         
-        CopyMemory(*TempMem, *MyClient\ReceiveBuffer, MemorySize(*TempMem))       ; - Will leave it up to plugin devs unless it becomes an issue.
+        CopyMemory(*MyClient\ReceiveBuffer, *TempMem, oldSize)
+        *MyClient\ReceiveBuffer = ReAllocateMemory(*MyClient\ReceiveBuffer, oldSize + Size) ; - Possible size mismatch could cause a crash in here..
         
-        *MyClient\ReceiveOffset = MemorySize(*TempMem)
+        CopyMemory(*TempMem, *MyClient\ReceiveBuffer, oldSize)       ; - Will leave it up to plugin devs unless it becomes an issue.
+        *MyClient\ReceiveOffset = oldSize
+        
         FreeMemory(*TempMem)
     Else
         *MyClient\ReceiveBuffer = AllocateMemory(Size)
         *MyClient\ReceiveOffset = 0
-        _log("debug", "Memsize" + Str(MemorySize(*MyClient\ReceiveBuffer)), GetLineFile())
     EndIf
 
     While Result <> Size
@@ -82,17 +83,49 @@ Procedure ReadClientData(*MyClient.NetworkClient, Size.l)
         
         If Result = -1
             *MyClient\Connected = #False
-            FreeMemory(*MyClient)
-            FreeMemory(*MyClient)
+            
+            FreeMemory(*MyClient\ReceiveBuffer)
+            FreeMemory(*MyClient\SendBuffer)
+            
             *MyClient\ReceiveOffset = 0
-            *MyClient\SendOffset = 0
             ProcedureReturn #False
         EndIf
         
         *MyClient\ReceiveOffset + Result
         Delay(1) ; - Just in case we wait a while, let other threads run and not lock the cpu at 100% usage.
     Wend
+    
     ProcedureReturn #True
+EndProcedure
+
+Procedure WriteClientData(*MyClient.NetworkClient, *Data, Size.l)
+    Define Result.l, MemResult.l, *TempMem
+    Result = 0
+    
+    If *MyClient\SendBuffer <> 0
+        Define oldSize.i = *MyClient\BufferSize
+        *TempMem = AllocateMemory(oldSize) ; - Copy any existing data in the send buffer..
+        
+        CopyMemory(*MyClient\SendBuffer, *TempMem, oldSize)
+        
+        *MyClient\SendBuffer = ReAllocateMemory(*MyClient\SendBuffer, oldSize + Size) 
+        *MyClient\BufferSize = oldSize + Size
+        
+        CopyMemory(*TempMem, *MyClient\SendBuffer, oldSize) 
+        FreeMemory(*TempMem)
+    ElseIf *MyClient\SendBuffer = 0
+        *MyClient\SendBuffer = AllocateMemory(Size)
+        CopyMemory(*Data, *MyClient\SendBuffer, Size)
+        *MyClient\BufferSize = Size
+    EndIf
+EndProcedure
+
+Procedure PurgeClientData(*MyClient.NetworkClient)
+    SendNetworkData(*MyClient\ID, *MyClient\SendBuffer, *MyClient\BufferSize)
+    FreeMemory(*MyClient\SendBuffer)
+    
+    *MyClient\BufferSize = 0
+    *MyClient\SendBuffer = 0
 EndProcedure
 
 Procedure ClientEvents()
@@ -111,8 +144,8 @@ Procedure ClientEvents()
 EndProcedure
 
 AddTask("NetClientEvents", #Null, @ClientEvents(), #Null, 2000) ; Every 2 seconds, check for disconnects.
-; IDE Options = PureBasic 5.00 (Linux - x64)
-; CursorPosition = 74
-; FirstLine = 42
-; Folding = 0
+; IDE Options = PureBasic 5.30 (Windows - x64)
+; CursorPosition = 125
+; FirstLine = 64
+; Folding = 9-
 ; EnableXP

@@ -1,6 +1,6 @@
 #PLUGIN_VERSION = 0001
 
-XIncludeFile "../Includes/Structures.pbi"
+XIncludeFile "../../Includes/Structures.pbi"
 
 ;{ Plugin Function Structure
 Structure PluginFunction ; - Callable server functions
@@ -53,8 +53,7 @@ Procedure DefinePrototypes(*Pointer.PluginFunction) ; Assigns function pointers 
     Global PurgeClientData.PurgeClientData = *Pointer\PurgeClientData
 EndProcedure
 
-; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 31
-; FirstLine = 4
+; IDE Options = PureBasic 5.00 (Windows - x64)
+; CursorPosition = 2
 ; Folding = -
 ; EnableXP

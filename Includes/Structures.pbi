@@ -44,19 +44,20 @@ Structure NetworkClient
     ID.i
     *SendBuffer
     *ReceiveBuffer
-    SendOffset.i
+    BufferSize.i
     ReceiveOffset.i
     Connected.a
 EndStructure
 
 Structure NetworkServer
+    ID.i
     *SendBuffer
-    SendOffset.i
+    *ReceiveBuffer
     ReceiveOffset.i
 EndStructure
 
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 39
-; FirstLine = 7
+; CursorPosition = 46
+; FirstLine = 8
 ; EnableThread
 ; EnableXP
