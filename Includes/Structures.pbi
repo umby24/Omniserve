@@ -51,13 +51,19 @@ EndStructure
 
 Structure NetworkServer
     ID.i
-    *SendBuffer
-    *ReceiveBuffer
-    ReceiveOffset.i
+    Port.l
+    EventThread.i
+    Mode.l
+    
+    *Connect
+    *Data
+    *Disconnect
+    
+    ClientLock.l
+    List Clients.i()
 EndStructure
-
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 46
-; FirstLine = 8
+; CursorPosition = 62
+; FirstLine = 19
 ; EnableThread
 ; EnableXP

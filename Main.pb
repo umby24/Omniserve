@@ -5,6 +5,10 @@
 ; #################################
 EnableExplicit
 
+; - TODO: Move to event based client architecture, like server networking.
+; - TODO: Provide basic compression algorithim support, such as zlib, zip, and lzma.
+; - TODO: Test server networking, and provide examples.
+
 #VERSION = 0001
 
 ; - Macros
@@ -28,6 +32,7 @@ XIncludeFile "Core/Settings.pbi"
 
 XIncludeFile "Core/Logger.pbi"
 XIncludeFile "Network/ClientNetwork.pbi"
+XIncludeFile "Network/ServerNetwork.pbi"
 XIncludeFile "Core/Plugins.pbi"
 XIncludeFile "Core/Console.pbi"
 ;{
@@ -58,8 +63,8 @@ _Log("info", "Complete.", GetLineFile())
 
 Input()
 CloseConsole()
-; IDE Options = PureBasic 5.00 (Windows - x64)
-; CursorPosition = 59
+; IDE Options = PureBasic 5.30 (Windows - x64)
+; CursorPosition = 10
 ; Folding = 0
 ; EnableThread
 ; EnableXP

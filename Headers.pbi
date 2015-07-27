@@ -30,6 +30,8 @@ Declare _Log(Type.s, Message.s, LineFile.s)
 
 Declare CreateClient(IP.s, Port.w)
 
+Declare AddClient(ClientId.l)
+
 Declare CloseClient(*MyClient.NetworkClient)
 
 Declare ReadClientData(*MyClient.NetworkClient, Size.l)
@@ -39,6 +41,24 @@ Declare WriteClientData(*MyClient.NetworkClient, *Data, Size.l)
 Declare PurgeClientData(*MyClient.NetworkClient)
 
 Declare ClientEvents()
+
+Declare AddServer(Name.s, Port.l, *Connect, *Data, *Disconnect, Mode=#PB_Network_TCP) ; - Creates a network server
+
+Declare RemoveServer(Server.s) ; - Deletes a network server    
+
+Declare StartServer(Server.s) ; - Starts the specified network server
+
+Declare EndServer(Server.s) ; - Closes the specified network server
+
+Declare CallConnectEvent(*Event, Client.l, Server.l) ; - Calls the connect event on the remote plugin.
+
+Declare CallDataEvent(*Event, Client.l, Server.l)
+
+Declare CallDisconnectEvent(*Event, Client.l, Server.l)
+
+Declare ServerMain() ; - Handles incoming server events and sends them to the correct plugin.
+
+Declare ServerShutdown() ; - Shuts down all network servers (Omniserve shutting down)
 
 Declare AssignPlugPointer()
 

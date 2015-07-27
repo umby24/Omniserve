@@ -31,6 +31,27 @@ Procedure CreateClient(IP.s, Port.w)
     ProcedureReturn Pointer
 EndProcedure
 
+Procedure AddClient(ClientId.l)
+    If ClientId = 0
+        ProcedureReturn #False
+    EndIf
+    
+    LockMutex(NetClientLock) ; - LOCK MUTEX
+    
+    AddMapElement(NetClients(), Str(ClientId))
+    
+    NetClients()\ID = ClientId
+    NetClients()\ReceiveOffset = 0
+    NetClients()\BufferSize = 0
+    NetClients()\Connected = #True
+    
+    Define Pointer = @NetClients(Str(ClientId))
+    
+    UnlockMutex(NetClientLock) ; - UNLOCK MUTEX
+    
+    ProcedureReturn Pointer
+EndProcedure
+
 Procedure CloseClient(*MyClient.NetworkClient)
     If *MyClient\Connected = #True
         CloseNetworkConnection(*MyClient\ID)
@@ -145,7 +166,7 @@ EndProcedure
 
 AddTask("NetClientEvents", #Null, @ClientEvents(), #Null, 2000) ; Every 2 seconds, check for disconnects.
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 125
-; FirstLine = 64
-; Folding = 9-
+; CursorPosition = 47
+; FirstLine = 30
+; Folding = D-
 ; EnableXP
