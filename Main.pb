@@ -9,7 +9,7 @@ EnableExplicit
 ; - TODO: Provide basic compression algorithim support, such as zlib, zip, and lzma.
 ; - TODO: Test server networking, and provide examples.
 
-#VERSION = 0001
+#VERSION = 0002
 
 ; - Macros
 Macro GetLineFile() ; - Macro for logging.
@@ -64,7 +64,7 @@ _Log("info", "Complete.", GetLineFile())
 Input()
 CloseConsole()
 ; IDE Options = PureBasic 5.30 (Windows - x64)
-; CursorPosition = 10
+; CursorPosition = 11
 ; Folding = 0
 ; EnableThread
 ; EnableXP

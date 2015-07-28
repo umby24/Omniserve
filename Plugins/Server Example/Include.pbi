@@ -1,6 +1,6 @@
 #PLUGIN_VERSION = 0002
 
-XIncludeFile "../Includes/Structures.pbi"
+XIncludeFile "../../Includes/Structures.pbi"
 
 ;{ Plugin Function Structure
 Structure PluginFunction ; - Callable server functions
@@ -70,5 +70,6 @@ Procedure DefinePrototypes(*Pointer.PluginFunction) ; Assigns function pointers 
 EndProcedure
 
 ; IDE Options = PureBasic 5.30 (Windows - x64)
+; CursorPosition = 16
 ; Folding = -
 ; EnableXP

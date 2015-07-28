@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://www.purebasic.com/namespace" version="1.0" creator="PureBasic 5.00 (Windows - x64)">
+<project xmlns="http://www.purebasic.com/namespace" version="1.0" creator="PureBasic 5.30 (Windows - x64)">
   <section name="config">
     <options closefiles="1" openmode="0" name="Omniserve"/>
     <comment>
@@ -12,7 +12,7 @@
   <section name="data">
     <explorer view="" pattern="0"/>
     <log show="1"/>
-    <lastopen date="2015-07-26 22:54" user="UnknownSec" host="UNKNOWN"/>
+    <lastopen date="2015-07-26 23:14" user="UnknownSec" host="UNKNOWN"/>
   </section>
   <section name="files">
     <file name="API\Include.pbi">
@@ -41,18 +41,18 @@
     </file>
     <file name="Includes\Structures.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
-      <fingerprint md5="c6af6beaec946bd8bbeba25caae29c30"/>
+      <fingerprint md5="e5e7200a88501d9d482cdbf21b15fd0e"/>
     </file>
     <file name="Main.pb">
       <config load="0" scan="1" panel="1" warn="0" lastopen="1" panelstate="+"/>
     </file>
     <file name="Network\ClientNetwork.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
-      <fingerprint md5="b24ad3e1b7fdd6b6dd60e27d7bda1304"/>
+      <fingerprint md5="c7f0c3a55214c8e83093eae9aa3f6bb5"/>
     </file>
     <file name="Network\ServerNetwork.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
-      <fingerprint md5="5436b672f42552d7d525d5c371efb05e"/>
+      <fingerprint md5="775170edf918141f3abb6c5aa97e2410"/>
     </file>
   </section>
   <section name="targets">
